@@ -10,7 +10,7 @@ const HeroLayout = (): React.ReactElement => {
       </p>
       <div className='flex flex-row w-full mt-10 gap-4 mb-20'>
       <button className='ease-in duration-100 active:text-slate-300 active:bg-slate-700 shadow shadow-md hover:shadow-lg w-32 bg-slate-800 text-slate-100 h-12 font-bold rounded-lg'>Explore</button>
-      <button className='ease-in duration-100 active:text-slate-300 active:bg-slate-700 shadow shadow-md hover:shadow-lg w-32 border border-slate-800 text-slate-800 border-2 h-12 font-bold rounded-lg hover:bg-slate-800 hover:text-slate-100'>Engage</button>
+      <button className='ease-in duration-100 active:text-slate-300 active:bg-slate-700 shadow shadow-md hover:shadow-lg w-32 border border-slate-800 text-slate-800 border-2 h-12 font-bold rounded-lg hover:bg-slate-800 hover:text-slate-100'>Connect</button>
       </div>
       </div>
       <div className='w-full bg-slate-800'>
