@@ -22,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint" : "./node_modules/.bin/eslint"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +47,7 @@
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.31.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-standard-with-typescript": "^24.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.6.0",

@@ -23,10 +23,14 @@ const NavBar = (): React.ReactElement => {
           </Link>
         </button>
         <button className="w-12 h-12 hover:bg-slate-200 ease-in duration-100 rounded-lg active:bg-slate-300">
-          <IoInformationCircleSharp className="m-auto text-slate-700 w-6 h-6" />
+          <Link to={'/about'}>
+            <IoInformationCircleSharp className="m-auto text-slate-700 w-6 h-6" />
+          </Link>
         </button>
         <button className="w-12 h-12 hover:bg-slate-200 ease-in duration-100 rounded-lg active:bg-slate-300">
-          <IoChatbox className="m-auto text-slate-700 w-6 h-6" />
+          <Link to={'/feedback'}>
+            <IoChatbox className="m-auto text-slate-700 w-6 h-6" />
+          </Link>
         </button>
       </div>
     </div>
