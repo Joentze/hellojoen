@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IoArrowDown, IoSearch } from 'react-icons/io5'
+import { getProjectList } from '../../api/notionRestHelpers'
 import ProjectCard from '../card/ProjectCard'
 interface IHeroLayout {
   engageBtnFn?: () => void
@@ -60,7 +61,11 @@ const testProjectData = {
   ]
 }
 
-const HeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn }): React.ReactElement => {
+const ProjectHeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn }): React.ReactElement => {
+  // useEffect(() => {
+  //   const projectCall = async (): Promise<object> => { return await getProjectList('4156753d0093438cb3a35f486783da7d') }
+  //   projectCall().catch(console.error)
+  // }, [])
   return <div className='w-full h-screen top-0 left-0 flex select-none bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-white via-slate-100 to-slate-400'>
     <div className="flex flex-col md:flex-row w-full h-screen">
       <div className='text-left w-full px-10 pt-10 md:pt-56 md:px-24 px-8'>
@@ -77,7 +82,7 @@ const HeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn }): React
           <button className='w-12 ease-in duration-100 active:text-slate-300 active:bg-slate-700 shadow shadow-md hover:shadow-lg bg-slate-800 text-slate-100 h-12 font-bold rounded-lg'><IoSearch className='m-auto w-full text-slate-200'/></button>
         </div>
       </div>
-      <div className='md:invisible m-auto -my-4 animate-bounce w-6 h-6 flex flex-row'>
+      <div className='md:invisible m-auto my-4 animate-bounce w-6 h-6 flex flex-row'>
         <IoArrowDown className='text-slate-400 w-full h-full'/>
       </div>
       <div className='w-full flex h-96 md:h-screen p-8 overflow-y-scroll scrollbar-style-none'>
@@ -98,4 +103,4 @@ const HeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn }): React
   </div>
 }
 
-export default HeroLayout
+export default ProjectHeroLayout
