@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { IoArrowDown, IoSearch } from 'react-icons/io5'
+import { AiOutlineLoading } from 'react-icons/ai'
 import { getProjectList } from '../../api/notionRestHelpers'
 import { NotionResponse, PagePreviewAttributes, parsePageTags } from '../../helpers/parseNotionDb'
 import ProjectCard from '../card/ProjectCard'
@@ -94,15 +95,22 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn })
       <div className='w-full flex h-96 md:h-screen p-8 overflow-y-scroll scrollbar-style-none'>
 
         <div className='flex flex-col m-auto gap-4 w-full'>
-          {projects?.map((item) =>
-            <ProjectCard
-              key={`key_${item.title}`}
-              title={item.title}
-              postDate={item.date}
-              description={item.text}
-              link={`/${item.id}`}
-              image={''}
-            />)}
+          {(projects != null)
+            ? <>
+              {projects?.map((item) =>
+                <ProjectCard
+                  key={`key_${item.title}`}
+                  title={item.title}
+                  postDate={item.date}
+                  description={item.text}
+                  link={`/${item.id}`}
+                  image={''}
+                />)}
+            </>
+            : <div className='w-24 h-24 m-auto'>
+              <AiOutlineLoading className='animate-spin w-full h-full text-slate-400'/>
+            </div>
+          }
         </div>
       </div>
     </div>
