@@ -42,5 +42,14 @@ export const parsePageTags = (notionResponse: NotionResponse): ParsePageTagsRetu
       })
     }
   })
-  return { content: pagesTags }
+  pagesTags.sort((a, b) => sortDate(a.date, b.date))
+  return { content: pagesTags.reverse() }
+}
+
+const sortDate = (a: string, b: string): number => {
+  const unixA = new Date(a).getTime() / 1000
+  const unixB = new Date(b).getTime() / 1000
+  if (unixA > unixB) return 1
+  if (unixA < unixB) return -1
+  return 0
 }
