@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoArrowDown, IoSearch } from 'react-icons/io5'
 import { getProjectList } from '../../api/notionRestHelpers'
+import { NotionResponse, PagePreviewAttributes, parsePageTags } from '../../helpers/parseNotionDb'
 import ProjectCard from '../card/ProjectCard'
 interface IHeroLayout {
   engageBtnFn?: () => void
@@ -62,10 +63,15 @@ const testProjectData = {
 }
 
 const ProjectHeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn }): React.ReactElement => {
-  // useEffect(() => {
-  //   const projectCall = async (): Promise<object> => { return await getProjectList('4156753d0093438cb3a35f486783da7d') }
-  //   projectCall().catch(console.error)
-  // }, [])
+  const [projects, setProjects] = useState<PagePreviewAttributes[]>()
+  useEffect(() => {
+    const projectCall = async (): Promise<void> => {
+      const projectList = await getProjectList()
+      const projectCardContents = parsePageTags(projectList)
+      setProjects(projectCardContents.content)
+    }
+    projectCall().catch(console.error)
+  }, [])
   return <div className='w-full h-screen top-0 left-0 flex select-none bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-white via-slate-100 to-slate-400'>
     <div className="flex flex-col md:flex-row w-full h-screen">
       <div className='text-left w-full px-10 pt-10 md:pt-56 md:px-24 px-8'>
@@ -88,14 +94,14 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn })
       <div className='w-full flex h-96 md:h-screen p-8 overflow-y-scroll scrollbar-style-none'>
 
         <div className='flex flex-col m-auto gap-4 w-full'>
-          {testProjectData.data.map((item) =>
+          {projects?.map((item) =>
             <ProjectCard
               key={`key_${item.title}`}
               title={item.title}
-              postDate={item.postDate}
-              description={item.description}
-              link={item.link}
-              image={item.image}
+              postDate={item.date}
+              description={item.text}
+              link={`/${item.id}`}
+              image={''}
             />)}
         </div>
       </div>

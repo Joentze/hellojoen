@@ -1,11 +1,15 @@
 import axios from 'axios'
+import { NotionResponse } from '../helpers/parseNotionDb'
 
-const url = (): string => { return process.env.REACT_APP_NOTION_DB_URL === undefined ? '' : process.env.REACT_APP_NOTION_DB_URL }
+const URL = (): string => { return process.env.REACT_APP_NOTION_API_URL === undefined ? '' : process.env.REACT_APP_NOTION_API_URL }
+const DB_ID = (): string => { return process.env.REACT_APP_NOTION_DB_ID === undefined ? '' : process.env.REACT_APP_NOTION_DB_ID }
 
-export const getProjectList = async (databaseId: string): Promise<object> => {
-  const options = {
-    headers: { 'Access-Control-Allow-Origin': '', 'Content-Type': 'json' }
-  }
-  const response = await axios.get(`${url()}/db/${databaseId}`, options)
+export const getProjectList = async (): Promise<NotionResponse> => {
+  const response = await axios.get(`${URL()}/db/${DB_ID()}`)
+  return response
+}
+
+export const getPageContent = async (pageId: string): Promise<object> => {
+  const response = await axios.get(`${URL()}/page/${pageId}`)
   return response
 }
