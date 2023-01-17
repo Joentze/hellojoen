@@ -21,8 +21,8 @@ export const getPageContent = async (pageId: string): Promise<object> => {
   return response
 }
 
-export const postFeedback = async (feedback: Feedback): Promise<object> => {
+export const postFeedback = async (feedback: Feedback): Promise<boolean> => {
   console.log(feedback)
   const response = await axios.post(`${URL()}/feedback/${FEEDBACK_DB_ID()}`, feedback)
-  return response
+  return response.status === 200
 }

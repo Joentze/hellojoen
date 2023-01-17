@@ -4,9 +4,13 @@ import ProjectCard from '../card/ProjectCard'
 interface IHeroLayout {
   engageBtnFn?: () => Promise<void>
   connectBtnFn?: () => Promise<void>
+  SetFirstName: React.Dispatch<React.SetStateAction<string>>
+  SetLastName: React.Dispatch<React.SetStateAction<string>>
+  SetEmail: React.Dispatch<React.SetStateAction<string>>
+  SetFeedback: React.Dispatch<React.SetStateAction<string>>
 }
 
-const HeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn }): React.ReactElement => {
+const FeedbackHeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn, SetFirstName, SetLastName, SetEmail, SetFeedback }): React.ReactElement => {
   return <div className='w-full h-screen top-0 left-0 flex select-none bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-white via-slate-100 to-slate-400'>
     <div className="flex flex-col md:flex-row w-full h-screen">
       <div className='text-left w-full px-10 pt-10 md:pt-56 md:px-24 px-8'>
@@ -22,21 +26,25 @@ const HeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn }): React
             <input
               className='flex-grow border border-2 border-slate-500 h-12 rounded-lg w-full gap-4 p-2 focus:border-slate-800 shadow-lg'
               placeholder='First Name'
+              onChange={(item) => SetFirstName(item.target.value)}
             />
             <input
               className='flex-grow border border-2 border-slate-500 h-12 rounded-lg w-full gap-4 p-2 focus:border-slate-800 shadow-lg'
               placeholder='Last Name'
+              onChange={(item => SetLastName(item.target.value))}
             />
           </div>
           <div className='flex flex-col gap-4'>
             <input
               className='flex-grow border border-2 border-slate-500 h-12 rounded-lg w-full gap-4 p-2 focus:border-slate-800 shadow-lg'
               placeholder='E-mail'
+              onChange={(item) => SetEmail(item.target.value)}
             />
             <textarea
               className='flex-grow border border-2 border-slate-500 h-32 rounded-lg w-full gap-4 p-2 focus:border-slate-800 shadow-lg resize-none'
               placeholder='Comments'
               rows={4}
+              onChange={(item) => SetFeedback(item.target.value)}
             />
             <div className='flex flex-row gap-4'>
               <div className='flex-grow'/>
@@ -55,4 +63,4 @@ const HeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn }): React
   </div>
 }
 
-export default HeroLayout
+export default FeedbackHeroLayout
