@@ -4,6 +4,7 @@ import { AiOutlineLoading } from 'react-icons/ai'
 import { getProjectList } from '../../api/notionRestHelpers'
 import { NotionResponse, PagePreviewAttributes, parsePageTags } from '../../helpers/parseNotionDb'
 import ProjectCard from '../card/ProjectCard'
+import { filterProjects } from '../../helpers/filterProjects'
 interface IHeroLayout {
   engageBtnFn?: () => void
   connectBtnFn?: () => void
@@ -65,6 +66,15 @@ const testProjectData = {
 
 const ProjectHeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn }): React.ReactElement => {
   const [projects, setProjects] = useState<PagePreviewAttributes[]>()
+  const [shownProjects, setShownProjects] = useState<PagePreviewAttributes[]>()
+  const [searchContent, setSearchContent] = useState<string>('')
+
+  const searchProjects = (searchTerm: string): void => {
+    if (projects === undefined) return
+    const filtered = filterProjects(searchTerm, projects)
+    setShownProjects(filtered)
+  }
+
   useEffect(() => {
     const projectCall = async (): Promise<void> => {
       const projectList = await getProjectList()
@@ -83,21 +93,23 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn })
         </p>
         <div className='w-full flex flex-row gap-2 mt-10 '>
           <input
-            className='flex-grow border border-2 border-slate-500 h-12 rounded-lg w-full gap-4 mb-20 p-2 focus:border-slate-800 shadow-lg'
+            className='flex-grow border border-2 hover:border-4 ease-in duration-100 border-slate-500 h-12 rounded-lg w-full gap-4 mb-20 p-2 focus:border-slate-800 shadow-lg'
             placeholder='Search My Projects (i.e Python)'
+            onChange={(item) => {
+              searchProjects(item.target.value)
+            }}
           />
-          <button className='w-12 ease-in duration-100 active:text-slate-300 active:bg-slate-700 shadow shadow-md hover:shadow-lg bg-slate-800 text-slate-100 h-12 font-bold rounded-lg'><IoSearch className='m-auto w-full text-slate-200'/></button>
         </div>
       </div>
       <div className='md:invisible m-auto my-4 animate-bounce w-6 h-6 flex flex-row'>
         <IoArrowDown className='text-slate-400 w-full h-full'/>
       </div>
-      <div className='w-full flex h-96 md:h-screen p-8 overflow-y-scroll scrollbar-style-none'>
+      <div className='w-full flex h-96 md:h-screen px-8 overflow-y-scroll scrollbar-style-none'>
 
         <div className='flex flex-col m-auto gap-4 w-full'>
           {(projects != null)
             ? <>
-              {projects?.map((item) =>
+              {shownProjects?.map((item) =>
                 <ProjectCard
                   key={`key_${item.title}`}
                   title={item.title}
