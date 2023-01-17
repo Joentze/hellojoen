@@ -5,6 +5,7 @@ import HomePage from './components/pages/HomePage'
 import ProjectsPage from './components/pages/ProjectsPage'
 import FeedbackPage from './components/pages/FeedbackPage'
 import AboutPage from './components/pages/AboutPage'
+import ProjectsArticlePage from './components/pages/ProjectArticlesPage'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/projects',
     element: <ProjectsPage />
+  },
+  {
+    path: '/projects/:id',
+    element: <ProjectsArticlePage />
   },
   {
     path: '/feedback',

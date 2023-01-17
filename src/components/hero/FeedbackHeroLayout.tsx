@@ -2,8 +2,8 @@ import React from 'react'
 import { IoArrowDown, IoSearch } from 'react-icons/io5'
 import ProjectCard from '../card/ProjectCard'
 interface IHeroLayout {
-  engageBtnFn?: () => void
-  connectBtnFn?: () => void
+  engageBtnFn?: () => Promise<void>
+  connectBtnFn?: () => Promise<void>
 }
 
 const HeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn }): React.ReactElement => {

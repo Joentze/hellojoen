@@ -103,7 +103,7 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({ engageBtnFn, connectBtnFn })
                   title={item.title}
                   postDate={item.date}
                   description={item.text}
-                  link={`/${item.id}`}
+                  link={`/projects/${item.id}`}
                   image={''}
                 />)}
             </>
