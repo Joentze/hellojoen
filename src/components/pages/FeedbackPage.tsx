@@ -8,7 +8,7 @@ const HomePage = (): React.ReactElement => {
   const [lastName, setLastName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [feedback, setFeedback] = useState<string>('')
-
+  const [isSend, setIsSend] = useState<boolean>(false)
   const postMessage = async (): Promise<void> => {
     if (!([firstName, lastName, email, feedback].every(item => item !== undefined && typeof (item) === 'string'))) return
     const response = await postFeedback({
@@ -16,7 +16,20 @@ const HomePage = (): React.ReactElement => {
       email,
       feedback
     })
+    if (response) {
+      setIsSend(true)
+    }
   }
-  return <><NavBar/><FeedbackHeroLayout engageBtnFn={postMessage} SetFeedback={setFeedback} SetFirstName={setFirstName} SetEmail={setEmail} SetLastName={setLastName}/></>
+  return <>
+    <NavBar/>
+    <FeedbackHeroLayout
+      isSend={isSend}
+      engageBtnFn={postMessage}
+      SetFeedback={setFeedback}
+      SetFirstName={setFirstName}
+      SetEmail={setEmail}
+      SetLastName={setLastName}
+    />
+  </>
 }
 export default HomePage
