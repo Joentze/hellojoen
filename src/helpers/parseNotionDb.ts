@@ -27,7 +27,9 @@ export const parsePageTags = (notionResponse: NotionResponse): ParsePageTagsRetu
       }]
     }
   }
+
   const pagesTags: PagePreviewAttributes[] = []
+
   const { results } = notionResponse.data
   results.forEach((item: any) => {
     const { Name, Date, 'Files & media': Files, Tags, Text } = item.properties
@@ -53,3 +55,7 @@ const sortDate = (a: string, b: string): number => {
   if (unixA < unixB) return -1
   return 0
 }
+
+// const parsePageContent = () => {
+
+// }
