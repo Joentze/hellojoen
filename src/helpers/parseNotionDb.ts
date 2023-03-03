@@ -5,25 +5,45 @@ export interface NotionResponse {
 export interface ParsePageTagsReturnType {
   content: PagePreviewAttributes[]
 }
+
+export interface FileAttributes {
+  expiry_time: string
+  url: string
+}
+
+export interface File {
+  file: FileAttributes
+  name: string
+  type: string
+}
+
 export interface PagePreviewAttributes {
+
   title: string
   date: string
   text: string
   tags: object[]
   id: string
-  files: object[]
+  files: File[]
+}
+
+export interface IPageContent {
+  type: string
+  text: string
+  url: string
 }
 
 export const parsePageTags = (notionResponse: NotionResponse): ParsePageTagsReturnType => {
   if (notionResponse === undefined) {
     return {
       content: [{
+
         title: '',
         date: '',
         text: '',
         tags: [{}],
         id: '',
-        files: [{}]
+        files: []
       }]
     }
   }
@@ -33,6 +53,7 @@ export const parsePageTags = (notionResponse: NotionResponse): ParsePageTagsRetu
   const { results } = notionResponse.data
   results.forEach((item: any) => {
     const { Name, Date, 'Files & media': Files, Tags, Text } = item.properties
+
     if (Name.title[0] !== undefined) {
       pagesTags.push({
         id: item.id,
@@ -56,6 +77,31 @@ const sortDate = (a: string, b: string): number => {
   return 0
 }
 
-// const parsePageContent = () => {
-
-// }
+export const parsePageContent = (response: any): IPageContent[] => {
+  const returnPageContent: IPageContent[] = []
+  const data = response.data
+  const results = data.results
+  results.forEach((item: any) => {
+    const blockType = item.type
+    const content = blockType !== 'image' ? item[blockType].rich_text : item[blockType].file.url
+    let text = ''
+    if (blockType !== 'image') {
+      content.forEach((line: any) => {
+      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        text += line.plain_text
+      })
+      returnPageContent.push({
+        type: blockType,
+        text,
+        url: ''
+      })
+    } else {
+      returnPageContent.push({
+        type: blockType,
+        url: content,
+        text: ''
+      })
+    }
+  })
+  return returnPageContent
+}

@@ -32,6 +32,7 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({
     const projectCall = async (): Promise<void> => {
       const projectList = await getProjectList()
       const projectCardContents = parsePageTags(projectList)
+      console.log(projectCardContents.content)
       setProjects(projectCardContents.content)
       setShownProjects(projectCardContents.content)
     }
@@ -86,7 +87,7 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({
                       postDate={item.date}
                       description={item.text}
                       link={`/projects/${item.id}`}
-                      image={''}
+                      image={item.files[0]?.file.url}
                     />
                   ))}
                 </>

@@ -13,11 +13,13 @@ interface Feedback {
 
 export const getProjectList = async (): Promise<NotionResponse> => {
   const response = await axios.get(`${URL()}/db/${DB_ID()}`)
+  console.log(response)
   return response
 }
 
 export const getPageContent = async (pageId: string): Promise<object> => {
   const response = await axios.get(`${URL()}/page/${pageId}`)
+
   return response
 }
 
