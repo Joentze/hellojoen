@@ -3,7 +3,6 @@ import { AiOutlineLoading } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import ProjectCard from '../card/ProjectCard'
 import { PagePreviewAttributes, parsePageTags } from '../../helpers/parseNotionDb'
-import { ReactComponent as HeroIcon } from '../HeroIcon.svg'
 import { getTimelineList } from '../../api/notionRestHelpers'
 interface IExperienceHeroLayout {
   engageBtnFn?: () => void
@@ -24,7 +23,6 @@ const ExperienceHeroLayout: React.FC<IExperienceHeroLayout> = ({
       const experienceList = await getTimelineList()
 
       const experienceCardContents = parsePageTags(experienceList)
-      console.log(experienceCardContents.content)
       setExperiences(experienceCardContents.content)
     }
     experienceCall().catch(console.error)

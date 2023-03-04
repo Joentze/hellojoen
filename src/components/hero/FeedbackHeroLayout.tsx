@@ -1,5 +1,4 @@
 import React from 'react'
-import { IoArrowDown, IoNewspaperSharp, IoSearch } from 'react-icons/io5'
 // import ProjectCard from '../card/ProjectCard'
 interface IHeroLayout {
   isSend: boolean

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { IoArrowDown, IoSearch } from 'react-icons/io5'
+import { IoArrowDown } from 'react-icons/io5'
 import { AiOutlineLoading } from 'react-icons/ai'
 import { getProjectList } from '../../api/notionRestHelpers'
 import {
-  NotionResponse,
   PagePreviewAttributes,
   parsePageTags
 } from '../../helpers/parseNotionDb'
@@ -20,7 +19,6 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({
 }): React.ReactElement => {
   const [projects, setProjects] = useState<PagePreviewAttributes[]>()
   const [shownProjects, setShownProjects] = useState<PagePreviewAttributes[]>()
-  const [searchContent, setSearchContent] = useState<string>('')
 
   const searchProjects = (searchTerm: string): void => {
     if (projects === undefined) return
@@ -32,7 +30,6 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({
     const projectCall = async (): Promise<void> => {
       const projectList = await getProjectList()
       const projectCardContents = parsePageTags(projectList)
-      console.log(projectCardContents.content)
       setProjects(projectCardContents.content)
       setShownProjects(projectCardContents.content)
     }
