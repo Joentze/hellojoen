@@ -22,7 +22,7 @@ export interface PagePreviewAttributes {
   title: string
   date: string
   text: string
-  tags: object[]
+  tags: INotionTag[]
   id: string
   files: File[]
 }
@@ -33,6 +33,12 @@ export interface IPageContent {
   url: string
 }
 
+export interface INotionTag {
+  name: string
+  color: string
+  id: string
+}
+
 export const parsePageTags = (notionResponse: NotionResponse): ParsePageTagsReturnType => {
   if (notionResponse === undefined) {
     return {
@@ -41,7 +47,7 @@ export const parsePageTags = (notionResponse: NotionResponse): ParsePageTagsRetu
         title: '',
         date: '',
         text: '',
-        tags: [{}],
+        tags: [],
         id: '',
         files: []
       }]

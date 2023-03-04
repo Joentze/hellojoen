@@ -41,7 +41,7 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({
   return (
     <div className="w-full h-screen top-0 left-0 flex select-none bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-white via-slate-100 to-slate-400">
       <div className="flex flex-col md:flex-row w-full h-screen">
-        <div className="text-left w-full px-10 pt-10 md:pt-56 md:px-24 px-8">
+        <div className="text-left w-full px-10 pt-10 md:pb-16 md:pt-56 md:px-24 px-8">
           <p className="text-[70px] md:text-[100px] font-bold text-slate-800">
             Projects.
           </p>
@@ -75,19 +75,20 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({
         <div className="md:invisible m-auto my-4 animate-bounce w-6 h-6 flex flex-row">
           <IoArrowDown className="text-slate-400 w-full h-full" />
         </div>
-        <div className="w-full flex h-96 md:h-screen px-8 overflow-y-scroll scrollbar-style-none">
+        <div className="w-full flex h-90 md:h-screen px-8 overflow-y-scroll scrollbar-style-none">
           <div className="flex flex-col m-auto gap-4 w-full">
-            {projects != null
+            {projects !== null
               ? (
                 <>
                   {shownProjects?.map((item) => (
                     <ProjectCard
                       key={`key_${item.title}`}
                       title={item.title}
-                      postDate={item.date}
+                      postDate={''}
                       description={item.text}
                       link={`/projects/${item.id}`}
                       image={item.files[0]?.file.url}
+                      tag={item.tags[0].name}
                     />
                   ))}
                 </>

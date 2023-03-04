@@ -14,21 +14,24 @@ const textStyle = {
 const ProjectArticlesPage = (): React.ReactElement => {
   const { id } = useParams()
   const [content, setContent] = useState<IPageContent[]>([])
+  const [loaded, setLoaded] = useState<boolean>(false)
   useEffect(() => {
     const getContent = async (): Promise<void> => {
       if (id === undefined) return
       const response = await getPageContent(id)
       const parseResponse = parsePageContent(response)
-      console.log(response)
       setContent(parseResponse)
+      setLoaded(true)
     }
     getContent().catch(console.error)
   }, [])
   return <div className='text-slate-800'>
     <NavBar/>
     <div className='w-full h-fit flex p-12'>
-      <div className='w-full md:w-1/2 h-fit m-auto justify'>
-
+    <div className='w-full md:w-1/2 h-fit m-auto justify'>
+      {loaded
+        ? (
+<>
     {content.map(item => {
       if (item.type !== 'image') {
         const style: string = textStyle[item.type as keyof typeof textStyle]
@@ -37,7 +40,20 @@ const ProjectArticlesPage = (): React.ReactElement => {
         return <img src={item.url} key={item.url} className="m-auto"/>
       }
     })}
-    </div>
+    </>
+          )
+        : (<div className='w-full h-fit flex flex-col animate-pulse gap-6'>
+          <div className='w-full rounded-lg bg-slate-200 h-32'></div>
+          <div className='w-full rounded-lg bg-slate-200 h-12'></div>
+          <div className='w-full flex flex-row'><div className='w-56 rounded-lg bg-slate-200 h-12'>
+            </div><div className='grow'></div></div>
+            <div className='w-full rounded-lg bg-slate-200 h-12'></div>
+            <div className='w-full flex flex-row'><div className='grow bg-slate-200 h-12'>
+              <div className='w-56 rounded-lg bg-slate-200 h-12'>
+            </div></div></div>
+        </div>
+          )
+    }</div>
     </div>
   </div>
 }

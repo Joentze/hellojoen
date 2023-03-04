@@ -4,8 +4,8 @@ export const filterProjects = (
   searchText: string,
   projects: PagePreviewAttributes[]
 ): PagePreviewAttributes[] => {
-  const filtered = projects.filter((project) => {
-    const corpus = `${project.title} ${project.text}`.toLowerCase()
+  const filtered = projects.filter((project: PagePreviewAttributes) => {
+    const corpus = `${project.title} ${project.text} ${project.tags[0].name}`.toLowerCase()
     if (corpus.includes(searchText.toLowerCase())) return true
     return false
   })

@@ -51,7 +51,7 @@ const HeroLayout: React.FC<IHeroLayout> = ({
         </div>
         <div className="w-full flex h-72 md:h-screen">
           <div className="md:w-full md:h-full m-auto pt-10">
-            <div className="scale-100 md:scale-75">
+            <div className="scale-100 md:scale-75 mt-10">
               <HeroIcon />
             </div>
           </div>
