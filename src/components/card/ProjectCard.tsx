@@ -24,7 +24,7 @@ const ProjectCard: React.FC<IProjectCard> = ({
       </div>
       <div className="text-left w-full p-2 px-4 h-full border-l-2 border-slate-500">
         <div className="flex flex-row">
-          <p className="font-bold text-xl text-slate-800 flex-grow">{title}</p>
+          <p className="font-bold text-lg text-slate-800 flex-grow line-clamp-1">{title}</p>
 
           <p className="text-sm text-slate-400">{postDate}</p>
         </div>
