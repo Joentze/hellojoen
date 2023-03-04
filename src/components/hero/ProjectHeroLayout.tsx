@@ -13,10 +13,7 @@ interface IHeroLayout {
   connectBtnFn?: () => void
 }
 
-const ProjectHeroLayout: React.FC<IHeroLayout> = ({
-  engageBtnFn,
-  connectBtnFn
-}): React.ReactElement => {
+const ProjectHeroLayout: React.FC<IHeroLayout> = (): React.ReactElement => {
   const [projects, setProjects] = useState<PagePreviewAttributes[]>()
   const [shownProjects, setShownProjects] = useState<PagePreviewAttributes[]>()
 

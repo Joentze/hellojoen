@@ -13,7 +13,6 @@ interface IHeroLayout {
 const FeedbackHeroLayout: React.FC<IHeroLayout> = ({
   isSend,
   engageBtnFn,
-  connectBtnFn,
   SetFirstName,
   SetLastName,
   SetEmail,

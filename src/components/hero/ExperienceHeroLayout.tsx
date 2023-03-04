@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineLoading } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
 import ProjectCard from '../card/ProjectCard'
 import { PagePreviewAttributes, parsePageTags } from '../../helpers/parseNotionDb'
 import { getTimelineList } from '../../api/notionRestHelpers'
@@ -11,12 +10,7 @@ interface IExperienceHeroLayout {
   connectLink: string
 }
 
-const ExperienceHeroLayout: React.FC<IExperienceHeroLayout> = ({
-  engageBtnFn,
-  connectBtnFn,
-  engageLink,
-  connectLink
-}): React.ReactElement => {
+const ExperienceHeroLayout: React.FC<IExperienceHeroLayout> = (): React.ReactElement => {
   const [experiences, setExperiences] = useState<PagePreviewAttributes[]>()
   useEffect(() => {
     const experienceCall = async (): Promise<void> => {
