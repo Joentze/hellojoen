@@ -37,14 +37,16 @@ const ExperienceHeroLayout: React.FC<IExperienceHeroLayout> = ({
             Experiences.
           </p>
           <p className="text-lg text-slate-600 line-clamp-4 -mt-2">
-          As an Aspiring Software Engineer, I am always eager to take on new challenges and expand my knowledge. My passion for creating drives me to continuously improve and innovate in my work.
+          As an Aspiring <u className="decoration-4 hover:decoration-2 ease-in-out duration-200">
+            Software Engineer</u>{' '}, I am always eager to take on new challenges and expand my knowledge.
+            My passion for creating drives me to continuously improve and innovate in my work.
           </p>
 
         </div>
         <div className="w-full flex h-72 md:h-screen">
         <div className="w-full flex h-96 md:h-screen px-8 overflow-y-scroll scrollbar-style-none">
           <div className="flex flex-col m-auto gap-4 w-full">
-            {experiences !== null
+            {experiences !== undefined
               ? (
                 <>
                   {experiences?.map((item) => (

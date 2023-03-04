@@ -27,13 +27,18 @@ const FeedbackHeroLayout: React.FC<IHeroLayout> = ({
           <p className="text-[70px] md:text-[100px] font-bold text-slate-800 leading-[68px] md:leading-normal mb-8">
             {"Let's"} Connect.
           </p>
-          <p className="text-lg text-slate-600 line-clamp-4 -mt-2">
+          <p className="text-lg text-slate-600 line-clamp-6 -mt-2">
             Drop me a comment or feedback if{" you'd "}like to work together on
             something or have any thoughts about a project I did! Alternatively,
             you can also find me on{' '}
             <a href="https://www.linkedin.com/in/joen-tan-6b57611b9/">
               <u className="decoration-4 hover:decoration-2 ease-in-out duration-200">
                 LinkedIn
+              </u>
+            </a>{' '}
+            or <a href="https://github.com/joentze">
+              <u className="decoration-4 hover:decoration-2 ease-in-out duration-200">
+                Github
               </u>
             </a>
             {/* Welcome to my portfolio site, my name is <u className='decoration-4 hover:decoration-2 ease-in-out duration-200'>Joen.</u> Join me as I document my technical escapades and pen down my perspective of the world around me. I hope that you will find my adventures engaging. */}

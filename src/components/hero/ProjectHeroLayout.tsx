@@ -77,7 +77,7 @@ const ProjectHeroLayout: React.FC<IHeroLayout> = ({
         </div>
         <div className="w-full flex h-90 md:h-screen px-8 overflow-y-scroll scrollbar-style-none">
           <div className="flex flex-col m-auto gap-4 w-full">
-            {projects !== null
+            {projects !== undefined
               ? (
                 <>
                   {shownProjects?.map((item) => (
